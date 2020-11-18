@@ -4,7 +4,7 @@ from twilio.rest import Client
 
 # Twilio setups (make into environment vars)
 account = TWILIO_ACCOUNT_SID
-token = TWILIO_ACCESS_TOKEN
+token = TWILIO_AUTH_TOKEN
 client = Client(account, token)
 
 # Controls
@@ -23,9 +23,9 @@ newegg_soup = BeautifulSoup(newegg_html_doc, 'html.parser')
 newegg_inventory = newegg_soup.find(class_="product-inventory")
 if "In stock." in newegg_inventory.strings:
   client.messages.create(
-    to=YOUR_VERIFIED_NUMBER, 
-    from_=TWILIO_NUMBER, 
-    body=f'Ryzen 5 5600X in stock at Newegg: {newegg_url}',
+    to = YOUR_VERIFIED_NUMBER, 
+    from_ = TWILIO_NUMBER, 
+    body = f'Ryzen 5 5600X in stock at Newegg: {newegg_url}',
   )
 
 # B&H Photo
@@ -36,8 +36,8 @@ bhphoto_soup = BeautifulSoup(bhphoto_html_doc, 'html.parser')
 bhphoto_inventory = bhphoto_soup.find(string="In Stock")
 if bhphoto_inventory == "In Stock":
   client.messages.create(
-    to=YOUR_VERIFIED_NUMBER,
-    from_=TWILIO_NUMBER,
-    body=f'Ryzen 5 5600X in stock at B&H Photo: {bhphoto_url}',
+    to = YOUR_VERIFIED_NUMBER,
+    from_ = TWILIO_NUMBER,
+    body = f'Ryzen 5 5600X in stock at B&H Photo: {bhphoto_url}',
   )  
 
