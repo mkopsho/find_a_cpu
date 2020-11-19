@@ -21,15 +21,21 @@ token = TWILIO_AUTH_TOKEN
 
 Replace these lines with your verified number and the Twilio-generated number:
 ```
-find_a_cpu.py:26,27,39,40:
-to = YOUR_VERIFIED_NUMBER,
-from_ = TWILIO_NUMBER,
+find_a_cpu.py:10,11:
+to_number = YOUR_VERIFIED_NUMBER
+from_number = TWILIO_NUMBER
+```
+
+These are strings and need to include the country code, e.g.,
+```
+to_number = "+12345678910"
+from_number = "+10987654321"
 ```
 
 ## Scheduling
-Use your scheduler of choice! Because I'm on a Mac, I ended up using `launchd` again:
+Use your scheduler of choice! Because I'm on a Mac, I ended up using `launchd` again. I created a job at `~/Library/LaunchAgents/find_a_cpu.plist`:
 ```
-~/Library/LaunchAgents/<job.plist>:
+~/Library/LaunchAgents/find_a_cpu.plist:
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -39,7 +45,7 @@ Use your scheduler of choice! Because I'm on a Mac, I ended up using `launchd` a
     <key>ProgramArguments</key>
     <array>
         <string>/Users/michaelkopsho/.pyenv/shims/python3</string>
-        <string>/Users/michaelkopsho/learning/find_a_cpu.py</string>
+        <string>/Users/michaelkopsho/git/find_a_cpu/find_a_cpu.py</string>
     </array>
     <key>StartInterval</key>
     <integer>60</integer>
@@ -50,10 +56,11 @@ Use your scheduler of choice! Because I'm on a Mac, I ended up using `launchd` a
 </dict>
 </plist>
 ```
+Make sure to specify your specific Python interpreter path as well as the `find_a_cpu.py` path in the `array` tags.
 
 Save that, then load the job into the scheduler (your UID can be found by typing `id` into the command line):
 ```
-launchctl bootstrap gui/UID ~/Library/LaunchAgents/<job.plist>
+launchctl bootstrap gui/UID ~/Library/LaunchAgents/find_a_cpu.plist
 ```
 
-This runs the program every 60 seconds; season to taste.
+This will run the program in 60 seconds and every 60 seconds thereafter; season to taste. Use an "always-on" solution like a raspberry pi or a hosted VM to make sure this always runs.
