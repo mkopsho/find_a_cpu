@@ -10,7 +10,7 @@ pip install -r requirements.txt
 ```
 
 ## Twilio Account
-We're using the [Twilio Python library]() to send updates, so you'll need to sign up for a free account. Once verified, you'll need to verify your own number (the one we'll be sending notifications _to_) and create a Twilio-generated number (the one we'll be sending notifications _from_). Also, gather your `Twilio Account SID` and your `Auth Token` from the account dashboard.
+We're using the [Twilio Python library](https://pypi.org/project/twilio/) to send updates, so you'll need to sign up for a free [Twilio account](https://www.twilio.com/). Once verified, you'll need to verify your own number (the one we'll be sending notifications _to_) and create a Twilio-generated number (the one we'll be sending notifications _from_). Also, gather your `Twilio Account SID` and your `Auth Token` from the account dashboard.
 
 Replace these lines with your `Twilio Account SID` and `Auth Token` data:
 ```
@@ -56,7 +56,7 @@ Use your scheduler of choice! Because I'm on a Mac, I ended up using `launchd` a
 </dict>
 </plist>
 ```
-Make sure to specify your specific Python interpreter path as well as the `find_a_cpu.py` path in the `array` tags.
+Make sure to specify your specific Python interpreter path as well as the path to `find_a_cpu.py` in the `array` tags.
 
 Save that, then load the job into the scheduler (your UID can be found by typing `id` into the command line):
 ```
