@@ -12,21 +12,21 @@ pip install -r requirements.txt
 ## Twilio Account
 We're using the [Twilio Python library](https://pypi.org/project/twilio/) to send updates, so you'll need to sign up for a free [Twilio account](https://www.twilio.com/). Once verified, you'll need to verify your own number (the one we'll be sending notifications _to_) and create a Twilio-generated number (the one we'll be sending notifications _from_). Also, gather your `Twilio Account SID` and your `Auth Token` from the account dashboard.
 
-Replace these lines with your `Twilio Account SID` and `Auth Token` data:
+Replace these lines with your `Twilio Account SID` and `Auth Token` data, as strings:
 ```
 find_a_cpu.py:5,6:
 account = TWILIO_ACCOUNT_SID
 token = TWILIO_AUTH_TOKEN
 ```
 
-Replace these lines with your verified number and the Twilio-generated number:
+Replace these lines with your verified number and the Twilio-generated number, as strings:
 ```
 find_a_cpu.py:10,11:
 to_number = YOUR_VERIFIED_NUMBER
 from_number = TWILIO_NUMBER
 ```
 
-These are strings and need to include the country code, e.g.,
+These need to include the country code, e.g.,
 ```
 to_number = "+12345678910"
 from_number = "+10987654321"
